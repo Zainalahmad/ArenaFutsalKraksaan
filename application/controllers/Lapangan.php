@@ -14,13 +14,11 @@ class Lapangan extends CI_Controller {
 	{
 		$user=$this->m_account->getuser($this->session->userdata('id'));
 		$lapangan=$this->m_account->lapangan();
-		$tanggal = tanggal_indonesia_lengkap(date('Y-m-d'));
 
 		$data = array(
 			'user' => $user,
-			'panelbody' => 'jadwal_lap',
+			'panelbody' => 'lapangan',
 			'lapangan' => $lapangan,
-			'tanggal' => $tanggal,
 		);
 		$this->load->view('panelbody',$data);
 	}

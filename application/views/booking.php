@@ -56,7 +56,7 @@
 		<section id="content" class="gray-area">
 			<div class="container">
 				<div class="row">
-					<div id="main" class="col-sms-6 col-sm-8 col-md-9">
+					<div id="main" class="col-sms-6 col-sm-6 col-md-7">
 						<div class="booking-section travelo-box">
 
 							<form action="<?=base_url(); ?>Booking/booking" class="booking-form" method="POST">
@@ -74,33 +74,21 @@
 									?>
 									<?php foreach ($user as $key) {?>
 									<div class="form-group row">
-										<div class="col-sm-6">
+										<div class="col-sm-12">
 											<label>Nama Lengkap</label>
 											<input type="text" class="input-text full-width" value="<?=$key->nama ?>" placeholder="" disabled/>
 										</div>
-										<div class="col-sm-6">
+										<div class="col-sm-12">
 											<label>Email</label>
 											<input type="email" class="input-text full-width" value="<?=$key->email ?>" placeholder="" disabled/>
 										</div>
-										<div class="col-sm-6">
+										<div class="col-sm-12">
 											<label>Nomor Telepon</label>
 											<input type="text" class="input-text full-width" value="<?=$key->telepon ?>" placeholder="" disabled/>
 										</div>
 										<input type="hidden" name="id_users" value="<?=$key->id ?>">
 										<input type="hidden" name="telepon" value="<?=$key->telepon ?>">
 
-
-									
-										<div class="col-sm-6">
-											<label>Tanggal</label>
-											<div class="form-group row">
-												<div class="col-xs-6">
-													<div class="datepicker-wrap">
-														<input name="tanggal_booking" type="text" class="input-text full-width" placeholder="Tanggal" >
-													</div>
-												</div>
-											</div>
-										</div>
 
 										<div class="col-sm-6">
 											<label>Lapangan</label>
@@ -114,12 +102,24 @@
 												</select>
 											</div>
 										</div>
+									
+										<div class="col-sm-6">
+											<label>Tanggal</label>
+											<div class="form-group row">
+												<div class="col-xs-12">
+													<div class="datepicker-wrap">
+														<input name="tanggal_booking" type="text" class="input-text full-width" placeholder="Tanggal" >
+													</div>
+												</div>
+											</div>
+										</div>
 
+										<!-- <?php echo ' .'; ?> -->
 
-										<div class="col-sm-12" hidden="">
+										<div class="col-sm-6" hidden>
 											<label>Harga Per Jam</label>
 											<div class="form-group row">
-												<div class="col-xs-6">
+												<div class="col-xs-12" >
 													<div class="">
 												<select class="form-control" id="harga" name="harga" required>
 				    						<option value="">No Selected</option>
@@ -130,60 +130,41 @@
 									</div>
 
 
-											<div class="col-sm-6">
+										<div class="col-sm-6">
 											<label>Jam</label>
 											<div class="form-group row">
-												<div class="col-xs-6">
+												<div class="col-xs-12">
 													<div class="">
 														<input name="jam_mulai" id="jam_mulai" type="time" class="input-text full-width" placeholder="Jam">
 													</div>
 												</div>
 											</div>
-
-
-											<!-- <div class="selector">
-												<select class="full-width" name="jam_mulai" id="jam_mulai" required>
-													<option value="">- Pilih Jam -</option>
-													<?php
-													for ($x = 8; $x <=24; $x++){
-													if($x < 10): { ?>
-														<option value="<?php echo '0'.$x.'.00';?>"><?php echo '0'.$x.'.00';?> WIB</option>
-													<?php
-													}else: {?>
-														<option value="<?php echo $x.'.00'?>"><?php echo $x.'.00';?> WIB</option>
-											<?php 
-												}endif;
-											} ?>
-												</select>
-											</div> -->
 										</div>
 
 										
 										<div class="col-sm-6">
 											<label>Durasi</label>
 											<div class="form-group row">
-												<div class="col-xs-6">
+												<div class="col-xs-12">
+													<div class="">
 													<input type="number" name="durasi" id="durasi" class="input-text" placeholder="Durasi">
+													</div>
 												</div>
 											</div>
 										</div>
-										
-
-										
+																
 
 									<div class="col-sm-6">
-											<label>Total Harga</label>
-											<div class="form-group row">
-												<div class="col-xs-6">
+										<label>Total Harga</label>
+										<div class="form-group row">
+											<div class="col-xs-12">
 											<input type="number" class="form-control" id="total_harga" name="total_harga" required>
-				    						
-												</div>
 											</div>
 										</div>
+									</div>
 										</div>
 									
 									</div>
-
 
 
 								<div class="form-group row">
@@ -192,32 +173,44 @@
 										</div>
 									</div>
 									<?php } ?>
+								</form>
 								</div>
-								<hr />
-							</form>
 						</div>
-					</div>
-					<div class="sidebar col-sms-6 col-sm-4 col-md-3">
+					<div class=" col-sms-6 col-sm-6 col-md-5"> 		
 						<div class="booking-details travelo-box">
 							<h4>Booking Details</h4>
 							
 							<table class="table">
 								<tr>
-									<!--<th>ID</th>
-									<th>TANGGAL TRANSAKSI</th>
-									<th>USER</th>
-									<th>tanggal booking</th>
-									<th>jam booking</th>
-									<th>action</th>
+									<!-- <th>ID</th> -->
+									<!-- <th>TANGGAL TRANSAKSI</th> -->
+									<!-- <th>USER</th> -->
+									<th style="text-align: center;">Tanggal Booking</th>
+									<th style="text-align: center;">Lapangan</th>
+									<th style="text-align: center;">Jam</th>
+									<th></th>
 								</tr>
 								<?php foreach ($detail_booking as $data) {?>
 								<tr>
-									<td><?php echo $data->id_transaksi ?></td>
-									<td><?php echo $data->tgl_transaksi ?></td>
-									<td><?php echo $data->id_users ?></td>
-									<td><?php echo $data->tgl_booking ?></td>
-									<td><?php echo $data->jam_booking ?></td>
-									<td></td>
+									<!-- <td><?php echo $data->id_transaksi ?></td> -->
+									<!-- <td><?php echo $data->tgl_transaksi ?></td> -->
+									<!-- <td><?php echo $data->id_users ?></td> -->
+									<td style="text-align: center;"><?php echo $data->tgl_booking ?></td>
+									<td style="text-align: center;"><?php echo $data->lapangan ?></td>
+									<td style="text-align: center;"><?php echo $data->jam_booking ?></td>
+									<td style="text-align: center;">
+										<?php if($data->status_bayar=='Belum Bayar'){ ?>
+											<a href="<?php echo base_url('booking/pembayaran/'.$data->id_transaksi) ?>" class="btn btn-warning btn-sm"><i class="fa fa-upload"></i> Pembayaran</a>
+										<?php }elseif ($data->status_bayar=='Sudah Bayar'){ ?>
+											<span class="label label-info"> <i class="fa fa-check"></i> <?php echo "Sudah Bayar </span>";
+										}elseif ($data->status_bayar=='Konfirmasi') { ?>
+											<span class="label label-success"> <i class="fa fa-ticket"></i> <?php echo "Terkonfirmasi </span>";
+										}elseif($data->status_bayar=='Batal') { ?>
+											<span class="label label-danger"> <i class="fa fa-times"></i> <?php echo "Transaksi Batal </span>";
+										} ?>
+									</td>
+								</tr>
+									</td>
 								</tr>
 								<?php } ?>
 							</table>
@@ -225,22 +218,13 @@
 							
 						</div>
 
-						<div class="travelo-box contact-box">
-							<h4>Need Travelo Help?</h4>
-							<p>We would be more than happy to help you. Our team advisor are 24/7 at your service to help you.</p>
-							<address class="contact-details">
-								<span class="contact-phone"><i class="soap-icon-phone"></i> 1-800-123-HELLO</span>
-								<br>
-								<a class="contact-email" href="#">help@travelo.com</a>
-							</address>
-						</div>
 					</div>
 				</div>
 			</div>
 		</section>
 
 		<footer id="footer">
-			<?php $this->load->view('common/footer'); ?>-->
+			<?php $this->load->view('common/footer'); ?>
 		</footer>
 	</div>
 

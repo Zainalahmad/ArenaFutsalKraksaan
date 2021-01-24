@@ -13,9 +13,11 @@
 
 		function jadwal_lapangan(){
 			$this->db->select('*');
-			$this->db->from('transaksi a');
-			// $this->db->
-			return $this->db->get();
+			$this->db->from('jadwal a');
+			// $this->db->join('users b','a.id_user=b.id','left');
+			$this->db->order_by('a.tanggal','ACS');
+			return $this->db->get()
+				->result();
 		}
 		
 		function daftar($data)
@@ -94,10 +96,24 @@
 
 		function view_booking($id){
 			$this->db->select('*');
+			$this->db->from('transaksi a');
+			$this->db->join('lapangan b','a.id_lapangan=b.id_lapangan','left');
+			$this->db->where('id_users',$id);
+			$this->db->order_by('id_transaksi','asc');
+			$query = $this->db->get();
+			return $query->result();
+		}
+		function view_transaksi($id){
+		$this->db->select('*');
 		$this->db->from('transaksi');
-		$this->db->where('id_users',$id);
+		$this->db->where('id_transaksi',$id);
 		$this->db->order_by('id_transaksi','asc');
 		$query = $this->db->get();
-		return $query->result();
+		return $query->row();
 		}
+		//edit
+	public function edit($data){
+		$this->db->where('id_transaksi', $data['id_transaksi']);
+		$this->db->update('transaksi',$data);
+	}
 	}

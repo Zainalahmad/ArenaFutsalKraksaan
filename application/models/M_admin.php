@@ -82,6 +82,8 @@ Class M_admin extends CI_Model
 
 	function tampil_jadwal()
 	{
+		//$query = $this->db->query('SELECT * FROM jadwal AS j INNER JOIN users AS u ON j.id_users = u.id');
+		//return $query->result();
 		return $this->db->get('jadwal')->result();
 	}
 

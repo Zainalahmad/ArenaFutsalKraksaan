@@ -44,8 +44,8 @@ class Booking extends CI_Controller {
 
 		);
 		$this->m_account->add_booking($data);
-		 //redirect(base_url('payment'), 'refresh');
-		$this->load->view('payment',$data);
+		redirect(base_url('booking'), 'refresh');
+		//$this->load->view('payment',$data);
 	}
 
 
@@ -98,5 +98,58 @@ class Booking extends CI_Controller {
 			);
 		$this->m_account->add_buktitf($data,'transaksi');
 		redirect('booking');
+	}
+
+	function pembayaran($id_transaksi){
+		$trans 	= $this->m_account->view_transaksi($id_transaksi);
+
+		$config['upload_path']		= './gudang/images/bukti_tf/';
+			$config['allowed_types']	= 'gif|jpg|png|jpeg';
+			$config['max_size']			= '2400';//dalam kb
+			$config['max_width']		= '2024';
+			$config['max_height']		= '2024';
+			//$config['thumb_marker']		= '';
+
+			$this->load->library('upload',$config);
+
+			if( ! $this->upload->do_upload('bukti_tf')){
+				
+				$data = array(	'trans' => $trans,
+								'panelbody' =>'payment',
+								// 'rute' =>$rute,
+							);
+				$this->load->view('panelbody', $data);
+			}else{
+			$upload_gambar = array('upload_data' => $this->upload->data());
+
+			//create thumbnail gambar
+			$config['image_library'] 	= 'gd2';
+			$config['source_image'] 	= './gudang/images/bukti_tf/'.$upload_gambar['upload_data']['file_name'];
+			$config['new_image']		= './gudang/images/bukti_tf/';
+			$config['create_thumb'] 	= TRUE;
+			$config['maintain_ratio'] 	= TRUE;
+			$config['width']         	= 250;
+			$config['height']       	= 250;
+			$config['thumb_marker']		= '';
+
+			$this->load->library('image_lib', $config);
+
+			$this->image_lib->resize(); 
+			//end
+			$i = $this->input;
+			$data = array(	'id_transaksi'			=> $id_transaksi,
+							'bukti_tf'			=> $upload_gambar['upload_data']['file_name'],
+							'status_bayar'			=> "Sudah Bayar"
+						);
+			$this->m_account->edit($data);
+			redirect(base_url('booking'), 'refresh');
+		}
+
+		$data = array(
+			'trans' => $trans,
+			'panelbody' =>'payment',
+			// 'rute' =>$rute,
+		);
+		$this->load->view('panelbody', $data);
 	}
 }

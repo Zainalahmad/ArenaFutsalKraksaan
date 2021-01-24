@@ -40,6 +40,7 @@
 									<tr>
 										<th>No</th>
 										<th>Kode Booking</th>
+										<th>Nama</th>
 										<th>Lapangan</th>
 										<th>Tanggal Main</th>
 										<th>Jam Main</th>
@@ -53,6 +54,7 @@
 									<tr>
 										<td><?= $no++ ?></td>
 										<td><?= $data->id_transaksi ?></td>
+										<td><?= $data->nama ?></td>
 										<td><?= $data->lapangan ?></td>
 										<td><?php echo date_format(date_create($data->tgl_booking), 'd M Y ');  ?></td>
 										<td><?php echo date_format(date_create($data->jam_booking), 'H:i');  ?></td>
@@ -60,18 +62,24 @@
 										<td><?= $data->total_transaksi ?></td>
 										<td><img src="<?php echo base_url(); ?>gudang/images/bukti_tf/<?php echo $data->bukti_tf?>" width="150px" height="100px"></td>
 										<td>
-											<?php if($data->status_bayar != "Sudah Bayar"){ ?>
+											<?php if($data->status_bayar == "Sudah Bayar"){ ?>
 											<div class="btn-group">
-											<?php echo form_open(base_url('admin/payment/status/'.$data->id_transaksi)); ?>
+											<input type="hidden" name="id_transaksi" class="form-control" value="<?php echo $data->id_transaksi ?>">
+											<!-- <?php echo form_open(base_url('admin/payment/status/'.$data->id_transaksi)); ?> -->
+											<input type="hidden" name="nama" class="form-control" value="<?php echo $data->nama ?>">
 											<input type="hidden" name="tgl_booking" class="form-control" value="<?php echo $data->tgl_booking ?>">
 											<input type="hidden" name="jam_booking" class="form-control" value="<?php echo $data->jam_booking ?>">	
 											<input type="hidden" name="durasi" class="form-control" value="<?php echo $data->durasi ?>">		
-											<input type="hidden" name="lapangan" class="form-control" value="<?php echo $data->lapangan ?>">				
+											<input type="hidden" name="lapangan" class="form-control" value="<?php echo $data->lapangan ?>">			
 
 												<button class="btn btn-warning btn-xs"><i class="fa fa-check"></i> Update Status</button>
-												<?php form_close(); ?>
+												<!-- <?php form_close(); ?> -->
 											</div>
-										<?php } ?>
+										<?php }elseif ($data->status_bayar=='Konfirmasi') { ?>
+											<span class="label label-success"> <i class="fa fa-ticket"></i> <?php echo "Terkonfirmasi </span>";
+										}elseif($data->status_bayar=='Batal') { ?>
+											<span class="label label-danger"> <i class="fa fa-times"></i> <?php echo "Transaksi Batal </span>";
+										} ?>?>
 										</td>
 									
 									

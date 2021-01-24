@@ -30,8 +30,12 @@ class Akun extends CI_Controller {
      public function index()
      {
         $this->ndol_login->cek_login();
-        $data['user']=$this->m_account->getuser($this->session->userdata('id'));
-        $data['inyong']=$this->m_account->getuser($this->session->userdata('id'));
+        $user=$this->m_account->getuser($this->session->userdata('id'));
+        $inyong=$this->m_account->getuser($this->session->userdata('id'));
+        $data=array(
+            'user' => $user,
+            'inyong' => $inyong,
+        );
      	$this->load->view('akun/index',$data);
      }
 

@@ -37,20 +37,24 @@ class Payment extends CI_Controller {
 	{
 		//update status
 		$data = array(	'id_transaksi'	=> $id,
-						'status_bayar'	=> 'Sudah Bayar'
+						'status_bayar'	=> 'Konfirmasi'
 						);
 			$this->m_admin->update_status($data);
 
 		//add jadal
 		$data = array(	
+						'nama' => $this->input->post('nama'),
 						'tanggal'	=> $this->input->post('tgl_booking'),
 						'jam'	=> $this->input->post('jam_booking'),
 						'durasi'	=> $this->input->post('durasi'),
 						'lapangan' => $this->input->post('lapangan')
+						
 						);
 		$this->m_admin->add_jadwal($data);
 		redirect(base_url('admin/payment'), 'refresh');
 	}
+
+	
 
 
 }

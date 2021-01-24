@@ -38,9 +38,12 @@
 	<link rel="stylesheet" href="<?=base_url() ?>gudang/css/responsive.css">
 </head>
 <body>
+	<?php 
+	$this ->load ->model('m_account'); 
+	?>
 
 	<div id="page-wrapper">
-		<?php $this->load->view('common/header'); ?>
+		
 		<div class="page-title-container style4">
 			<div class="container">
 				<div class="page-title">
@@ -62,6 +65,8 @@
                     	<div class="booking-information travelo-box">
                     		<h2>Pembayaran</h2>
                     		<hr>
+                    		<?php echo form_open_multipart(base_url('booking/pembayaran/'.$trans->id_transaksi));
+					 ?>
                     		<div class="booking-confirmation clearfix">
                     			<!-- <i class="soap-icon-recommend icon circle"></i> -->
                     			<div class="message">
@@ -103,6 +108,7 @@
                     			</div>
                     		</div>
                     		</form>
+                    		<?php form_close(); ?>
                     	</div>
                     </div>
                     <div class="sidebar col-sm-4 col-md-3">
@@ -141,7 +147,6 @@
         </section>
 
 		<footer id="footer">
-			<?php $this->load->view('common/footer'); ?>
 		</footer>
 	</div>
 

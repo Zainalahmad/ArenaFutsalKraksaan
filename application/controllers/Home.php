@@ -23,10 +23,19 @@ class Home extends CI_Controller {
 	{
 		$user=$this->m_account->getuser($this->session->userdata('id'));
 		$lapangan=$this->m_account->lapangan();
+		$jadwal = $this->m_account->jadwal_lapangan();
+		// $tgl1 = date('d-m-Y', strtotime('01-01-2021' . ' + 1 day'));
+		// $tgl2 = date('Y-m-d', strtotime('31-12-2021')); //Added one day to end with 08-05-2018
+		// $start = new Datetime($tgl1);
+  //   	$end   = new Datetime($tgl2);
+  //  		$interval = DateInterval::createFromDateString('1 day');
+  //   	$period   = new DatePeriod($start, $interval, $end);
 		$data = array(
 			'user' => $user,
 			'panelbody' => 'home',
 			'lapangan' => $lapangan,
+			'jadwal' =>$jadwal,
+			// 'period' => $period,
 		);
 		$this->load->view('panelbody',$data);
 	}

@@ -39,6 +39,7 @@
 								<tbody>
 									<tr>
 										<th>No</th>
+										<th>Nama</th>
 										<th>Tanggal</th>
 										<th>Jam Main</th>
 										<th>Lapangan</th>
@@ -48,7 +49,7 @@
 									</tr><?php foreach ($jadwal as $data){?>
 									<tr>
 										<td><?= $no++ ?></td>
-										
+										<td><?= $data->nama ?></td>
 										<td><?php echo date_format(date_create($data->tanggal), 'd M Y ');  ?></td>
 										<td><?php echo date_format(date_create($data->jam), 'H:i');  ?></td>
 										<td><?= $data->lapangan ?></td>

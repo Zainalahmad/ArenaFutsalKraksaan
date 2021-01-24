@@ -49,8 +49,8 @@
 					<div class="tab-content">
 						<div id="dashboard" class="tab-pane fade in active">
 							<?php foreach ($user as $kie) { ?>
-							<h1 class="no-margin skin-color">Hi <?=$kie->nama ?>, Welcome to Tiket Om!</h1>
-							<p>All your trips booked with us will appear here and you’ll be able to manage everything!</p>
+							<h1 class="no-margin skin-color">Hi <?=$kie->nama ?>, Selamat datang di ArenaFutsal !</h1>
+						
 							<div class="notification-area">
 								<div class="info-box block">
 									<span class="close"></span>
